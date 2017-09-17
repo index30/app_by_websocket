@@ -1,9 +1,10 @@
 var socket = new WebSocket('ws://' + location.host + '/websocket');
 
 socket.onmessage = function (message) {
-    //message = JSON.parse(message.data);
     result = document.getElementById('result');
-    result.innerHTML = message.data;
+    li = document.createElement('li');
+    li.innerHTML = message.data;
+    result.appendChild(li);
 }
 
 

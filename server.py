@@ -12,6 +12,7 @@ patch_tornado()
 
 class WebSocketHandler(tornado.websocket.WebSocketHandler):
     users = set()
+    messages = []
 
     def open(self):
         self.users.add(self)
@@ -20,6 +21,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
     def on_message(self, message):
         message = json.loads(message)
         if message["text"]:
+            self.messages.append(message)
             for user in self.users:
                 user.write_message(message["text"])
 
