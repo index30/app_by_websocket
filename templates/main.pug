@@ -2,12 +2,14 @@ doctype html
 html(lang="ja")
   head
     meta(charset="utf-8")
+    link(href="{{ static_url('css/style.css') }}", rel="stylesheet")
     script(src="{{ static_url('js/ws_response.js') }}")
     title wstest
   body
     h1.sitettl wstest
     main.main
-      div#app
+      div#app(Align="center")
         input#text_box(type="text")
         button#btn(onclick="send_mes();") PUSH
-        ul#result(style="list-style:none;")
+        div.resultapp
+          ul#result(style="list-style:none;")
