@@ -7,9 +7,12 @@ html(lang="ja")
     title wstest
   body
     h1.sitettl wstest
+    ul.resultappul
+      li.resultappli: a.resultappa(href="#") Home
+      li.resultappli: a.resultappa(href="#") Test
     main.main
-      div#app(Align="center")
-        input#text_box(type="text")
-        button#btn(onclick="send_mes();") PUSH
-        div.resultapp
-          ul#result(style="list-style:none;")
+    div#app(Align="center")
+      input#text_box(type="text")
+      button#btn(onclick="send_mes();") PUSH
+      div.resultapp
+        ul#result(style="list-style:none;")
