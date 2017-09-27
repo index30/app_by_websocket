@@ -13,6 +13,6 @@ html(lang="ja")
     main.main
     div#app(Align="center")
       input#text_box(type="text")
-      button#btn(onclick="send_mes();") PUSH
+      button.chatbutton#btn(onclick="send_mes();"): span.chatbuttonspan PUSH
       div.resultapp
         ul#result(style="list-style:none;")

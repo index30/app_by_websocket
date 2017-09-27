@@ -3,18 +3,20 @@ body {
 }
 
 input{
-    height: 20px;
-    width: 500px;
+    height: 40px;
+    width: 600px;
     outline: 0;
+    font-size: 18px;
     border-top-width: 0px;
     border-left-width: 0px;
     border-right-width: 0px;
 }
 
 input:active, input:focus{
-    height: 20px;
-    width: 500px;
+    height: 40px;
+    width: 600px;
     outline: 0;
+    font-size: 18px;
     border-top-width: 0px;
     border-left-width: 0px;
     border-right-width: 0px;
@@ -27,7 +29,7 @@ input:active, input:focus{
 .resultapp {
     width: 500px;
     background-color: #eee;
-    font-size: 16px;
+    font-size: 18px;
     font-smooth: never;
     -webkit-font-smoothing: none;
     font-family: 'pokemon-font', monospace;
@@ -65,5 +67,50 @@ input:active, input:focus{
 
 .resultappa:hover {
     background-color: #111;
+
+}
+
+.chatbutton {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+
+}
+
+.chatbuttonspan {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+
+}
+
+.chatbuttonspan:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+
+}
+
+.chatbutton:hover span {
+    padding-right: 25px;
+
+}
+
+.chatbutton:hover span:after {
+    opacity: 1;
+    right: 0;
 
 }
