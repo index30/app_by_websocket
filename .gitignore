@@ -1,6 +1,5 @@
 .Python
 
-
 bin/
 lib/
 include/
@@ -9,4 +8,7 @@ static/src/
 static/fonts/
 
 pip-selfcheck.json
+path.py
 static/css/pokemon-font.css
+
+*.db
