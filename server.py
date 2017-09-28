@@ -80,11 +80,33 @@ class LogoutHandler(BaseHandler):
         self.redirect('/')
 
 
+class SignupHandler(BaseHandler):
+    def get(self):
+        self.render("signup.pug")
+
+    def post(self):
+        #self.check_xsrf_cookie()
+        username = self.get_argument("username")
+        password = self.get_argument("password")
+        confirmpass = self.get_argument("confirm")
+
+        pass_sql = 'select user_pass from user where user_name=?'
+        c.execute(pass_sql, (username, ))
+        pass_list = c.fetchone()
+        if pass_list is None and password == confirmpass:
+            c.execute('insert into user (user_name, user_pass) values (?,?)', (username, password))
+            self.set_current_user(username)
+            self.redirect("/")
+        else:
+            self.redirect("/signup")
+
+
 class Application(tornado.web.Application):
     def __init__(self):
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
         handlers = [
             (r"/", MainHandler),
+            (r"/signup", SignupHandler),
             (r"/auth/login", LoginHandler),
             (r"/auth/logout", LogoutHandler),
             (r"/websocket", WebSocketHandler),
