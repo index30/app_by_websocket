@@ -1,0 +1,17 @@
+doctype html
+html(lang="ja")
+  head
+    meta(charset="utf-8")
+    link(href="{{ static_url('css/style.css') }}", rel="stylesheet")
+    script(src="{{ static_url('js/ws_response.js') }}")
+    title wstest
+  body
+    h1.sitettl {% block pagename %}{% end %}
+    ul.resultappul
+      li.resultappli: a.resultappa(href="/") Home
+      li.resultappli: a.resultappa(href="/signup") Signup
+      li.resultappli: a.resultappa(href="/signin") Signin
+      li.resultappli: a.resultappa(href="/signout") Signout
+    main.main
+    {% block content %}
+    {% end %}

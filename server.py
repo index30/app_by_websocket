@@ -50,13 +50,14 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
 
 class MainHandler(BaseHandler):
+    @tornado.web.authenticated
     def get(self):
         self.render('main.pug')
 
 
-class LoginHandler(BaseHandler):
+class SigninHandler(BaseHandler):
     def get(self):
-        self.render("login.pug")
+        self.render("signin.pug")
 
     def post(self):
         #self.check_xsrf_cookie()
@@ -73,7 +74,7 @@ class LoginHandler(BaseHandler):
             self.write_error(403)
 
 
-class LogoutHandler(BaseHandler):
+class SignoutHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
         self.clear_current_user()
@@ -95,6 +96,7 @@ class SignupHandler(BaseHandler):
         pass_list = c.fetchone()
         if pass_list is None and password == confirmpass:
             c.execute('insert into user (user_name, user_pass) values (?,?)', (username, password))
+            conn.commit()
             self.set_current_user(username)
             self.redirect("/")
         else:
@@ -107,12 +109,12 @@ class Application(tornado.web.Application):
         handlers = [
             (r"/", MainHandler),
             (r"/signup", SignupHandler),
-            (r"/auth/login", LoginHandler),
-            (r"/auth/logout", LogoutHandler),
+            (r"/signin", SigninHandler),
+            (r"/signout", SignoutHandler),
             (r"/websocket", WebSocketHandler),
         ]
         settings = dict(
-            login_url="/auth/login",
+            login_url="/signin",
             cookie_secret=path.cookie_path,
             template_path=os.path.join(BASE_DIR, 'templates'),
             static_path=os.path.join(BASE_DIR, 'static'),

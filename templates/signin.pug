@@ -1,19 +1,14 @@
-doctype html
-html(lang="ja")
-  head
-    meta(charset="utf-8")
-    link(href="{{ static_url('css/style.css') }}", rel="stylesheet")
-    script(src="{{ static_url('js/ws_response.js') }}")
-    title wstest
-  body
-    h1.sitettl Login
-    ul.resultappul
-      li.resultappli: a.resultappa(href="/") Home
-      li.resultappli: a.resultappa(href="/auth/login") Signup
-      li.resultappli: a.resultappa(href="/auth/login") Login
-      li.resultappli: a.resultappa(href="/auth/logout") Logout
-    main.main
-    form(action="/auth/login" method="post")
-      p: username: input(type="text" name="username")
-      p: password: input(type="password" name="password")
-      input(type="submit" value="login")
+{% extends "base.pug" %}
+
+{% block pagename %}Sign in{% end %}
+
+{% block content %}
+form(action="/signin" method="post")
+  div.form-group
+    label(for='username') username:
+    input#name.form-control(type="text" name='username')
+  div.form-group
+    label(for='password') password:
+    input#pass.form-control(type="password" name='password')
+  input(type="submit" value="Sign in")
+{% end %}
