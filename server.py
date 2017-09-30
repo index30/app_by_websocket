@@ -1,5 +1,6 @@
-import os, sys, random, json
+import os, sys, random, json, path
 import sqlite3
+from pykakasi import kakasi
 
 from pypugjs.ext.tornado import patch_tornado
 import tornado.ioloop
@@ -8,12 +9,13 @@ import tornado.websocket
 import tornado.escape
 from tornado.web import url
 
-import path
-
 patch_tornado()
 db_name = 'appdatabase.db'
 conn = sqlite3.connect(db_name)
 c = conn.cursor()
+kakasi = kakasi()
+kakasi.setMode('J', 'H')
+conv = kakasi.getConverter()
 
 class BaseHandler(tornado.web.RequestHandler):
     cookie_username = "username"
@@ -42,7 +44,8 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         if message["text"]:
             self.messages.append(message)
             for user in self.users:
-                user.write_message(message["text"])
+                kakasi_mes = conv.do(message["text"])
+                user.write_message(kakasi_mes)
 
     def on_close(self):
         self.users.remove(self)
