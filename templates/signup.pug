@@ -4,14 +4,18 @@
 
 {% block content %}
 form(action="/signup" method="post")
-  div.form-group
-    label username
-    input#username(type="text" name="username")
-  div.form-group
-    label password
-    input#password(type="password" name="password")
-  div.form-group
-    label confirm password
-    input#confirm(type="password" name="confirm")
-  input(type="submit" value="Sign Up")
+  div.col-sm-offset-3.col-sm-7
+    div.form-group
+      label username
+      input#username(type="text" name="username")
+  div.col-sm-offset-3.col-sm-7
+    div.form-group
+      label password
+      input#password(type="password" name="password")
+  div.col-sm-offset-3.col-sm-7
+    div.form-group
+      label confirm password
+      input#confirm(type="password" name="confirm")
+  div.col-sm-offset-5.col-sm-4.col-sm-offset-3
+    input.signbutton(type="submit" value="Sign Up")
 {% end %}

@@ -4,11 +4,14 @@
 
 {% block content %}
 form(action="/signin" method="post")
-  div.form-group
-    label(for='username') username:
-    input#name.form-control(type="text" name='username')
-  div.form-group
-    label(for='password') password:
-    input#pass.form-control(type="password" name='password')
-  input(type="submit" value="Sign in")
+  div.col-sm-offset-3.col-sm-7
+    div.form-group(align="center")
+      label(for='username') username:
+      input#name.form-control(type="text" name='username')
+  div.col-sm-offset-3.col-sm-7
+    div.form-group(align="center")
+      label(for='password') password:
+      input#pass.form-control(type="password" name='password')
+  div.col-sm-offset-5.col-sm-4.col-sm-offset-3
+    input.signbutton(type="submit" value="Sign in")
 {% end %}
