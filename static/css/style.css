@@ -35,6 +35,15 @@ input:active, input:focus{
     font-family: 'pokemon-font', monospace;
 }
 
+.botapp {
+    width: 500px;
+    background-color: #eee;
+    font-size: 18px;
+    font-smooth: never;
+    -webkit-font-smoothing: none;
+    font-family: 'pokemon-font', monospace;
+}
+
 @font-face {
     font-family: 'pokemon-font';
     src: url('../fonts/pokemon-font.eot'); /* IE9 Compat Modes */
