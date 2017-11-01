@@ -45,7 +45,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             self.messages.append(message)
             for user in self.users:
                 kakasi_mes = conv.do(message["text"])
-                user.write_message(kakasi_mes)
+                user.write_message({'kakasi_mes': kakasi_mes, 'test': 'test'})
 
     def on_close(self):
         self.users.remove(self)

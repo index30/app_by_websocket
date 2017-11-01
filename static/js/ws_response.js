@@ -3,8 +3,9 @@ var socket = new WebSocket('ws://' + location.host + '/websocket');
 socket.onmessage = function (message) {
     result = document.getElementById('result');
     li = document.createElement('li');
-    return_mes(message.data);
-    li.innerHTML = message.data;
+    var data = JSON.parse(message.data);
+    return_mes(data.kakasi_mes);
+    li.innerHTML = data.kakasi_mes;
     result.appendChild(li);
 }
 
