@@ -1,6 +1,7 @@
 import os, sys, random, json, path
 import sqlite3
 from pykakasi import kakasi
+from auto_response import DefaultResponse
 
 from pypugjs.ext.tornado import patch_tornado
 import tornado.ioloop
@@ -45,7 +46,8 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             self.messages.append(message)
             for user in self.users:
                 kakasi_mes = conv.do(message["text"])
-                user.write_message({'kakasi_mes': kakasi_mes, 'test': 'test'})
+                response = DefaultResponse.parse_response(message["text"])
+                user.write_message({'kakasi_mes': kakasi_mes, 'response': response})
 
     def on_close(self):
         self.users.remove(self)

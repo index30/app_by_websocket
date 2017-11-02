@@ -4,7 +4,7 @@ socket.onmessage = function (message) {
     result = document.getElementById('result');
     li = document.createElement('li');
     var data = JSON.parse(message.data);
-    return_mes(data.kakasi_mes);
+    return_mes(data.response);
     li.innerHTML = data.kakasi_mes;
     result.appendChild(li);
 }
@@ -22,12 +22,6 @@ function send_mes () {
 }
 
 function return_mes (message){
-    var template = "なんでも";
-    if(~message.indexOf(template)){
-        bot_result = document.getElementById('botmes');
-        bot_result.innerHTML = "そういうのはなしです";
-    }else{
-        bot_result = document.getElementById('botmes');
-        bot_result.innerHTML = "いいですね!!おいしそう...";
-    }
+    bot_result = document.getElementById('botmes');
+    bot_result.innerHTML = message;
 }
