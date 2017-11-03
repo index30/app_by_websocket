@@ -46,7 +46,8 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             self.messages.append(message)
             for user in self.users:
                 kakasi_mes = conv.do(message["text"])
-                response = DefaultResponse.parse_response(message["text"])
+                DR = DefaultResponse()
+                response = DR.parse_response(message["text"])
                 user.write_message({'kakasi_mes': kakasi_mes, 'response': response})
 
     def on_close(self):
