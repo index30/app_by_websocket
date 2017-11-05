@@ -4,6 +4,7 @@ class DefaultResponse():
     def __init__(self):
         pass
 
+    #word2vecを使いたい(方針)
     def wakati_node_parse(self, message):
         m = MeCab.Tagger("-Owakati")
         parse_txt = m.parseToNode(message)
@@ -18,7 +19,7 @@ class DefaultResponse():
         return node_dic
 
     def parse_response(self, message):
-        wakati_node = self.wakati_node_parse(message)
+        # wakati_node = self.wakati_node_parse(message)
         if message == "なんでも":
             return_mes = "そういうのはよくないです"
             return return_mes

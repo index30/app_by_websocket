@@ -4,6 +4,7 @@
 bin/
 lib/
 test/
+data/
 include/
 __pycache__/
 static/src/
