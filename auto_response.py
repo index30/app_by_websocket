@@ -15,10 +15,8 @@ class DefaultResponse():
         while parse_txt:
             node = parse_txt.surface
             node_fea = parse_txt.feature.split(",")
-            # パース失敗や, 名詞と出ているのに認識しないバグ有り(調査中)
             if node_fea[0] == part_speech[0]:
                 node_dic[part_speech[0]] = node_dic[part_speech[0]] + [node]
-
             parse_txt = parse_txt.next
         return node_dic
 
@@ -34,16 +32,34 @@ class DefaultResponse():
         result = [g/len(word) for g in topic_counter]
         return topic[np.argmax(np.array(result))]
 
-    def parse_response(self, message):
-        wakati_node = self.wakati_node_parse(message)
-        noun = wakati_node["名詞"]
-        genre = self.response_genre(noun)
-        if message == "なんでも":
+    def return_template(self, mes, genre):
+        if mes == "なんでも":
             return_mes = "そういうのはよくないです"
             return return_mes
         elif genre=="料理":
             return_mes = "いいですね!!おいしそう..."
             return return_mes
-        else:
-            return_mes = "それはりょうりですか??わたししらないです"
+        elif genre == "例外":
+            return_mes = "よくわかりませんでした...もういちどおねがいできますか?"
             return return_mes
+        elif genre == "未知":
+            return_mes = "その単語は知らないです...ごめんなさい"
+            return return_mes
+        else:
+            return_mes = "それはりょうりですか??"
+            return return_mes
+
+    def remove_empty_ele(self, target):
+        return [l for l in target if l != '']
+
+    def parse_response(self, message):
+        wakati_node = self.wakati_node_parse(message)
+        noun = self.remove_empty_ele(wakati_node["名詞"])
+        if noun:
+            try:
+                genre = self.response_genre(noun)
+                return self.return_template(message, genre)
+            except:
+                return self.return_template(message, "未知")
+        else:
+            return self.return_template(message, "例外")

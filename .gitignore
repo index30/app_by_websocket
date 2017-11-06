@@ -3,6 +3,7 @@
 
 bin/
 lib/
+model/
 test/
 data/
 include/
