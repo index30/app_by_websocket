@@ -5,7 +5,7 @@
 {% block content %}
 div#app(Align="center")
   div.botapp
-    p#botmes(style="list-style:none;") ごはんどうしますか?
+    p#botmes(style="list-style:none;") ごはんどうしますか{{current_user}}?
   input#text_box(type="text")
   button.chatbutton#btn(onclick="send_mes();"): span.chatbuttonspan PUSH
   div.resultapp

@@ -10,9 +10,12 @@ html(lang="ja")
     h1.sitettl {% block pagename %}{% end %}
     ul.resultappul
       li.resultappli: a.resultappa(href="/") Home
+      {% if not current_user%}
       li.resultappli: a.resultappa(href="/signup") Signup
       li.resultappli: a.resultappa(href="/signin") Signin
+      {% else %}
       li.resultappli: a.resultappa(href="/signout") Signout
+      {% end %}
     main.main
     {% block content %}
     {% end %}
