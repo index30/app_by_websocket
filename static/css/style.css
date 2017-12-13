@@ -2,6 +2,11 @@ body {
 
 }
 
+.mainform{
+    margin: 0 auto;
+    width: 1000px;
+}
+
 input{
     height: 40px;
     width: 600px;
@@ -26,9 +31,14 @@ input:active, input:focus{
     box-shadow: 0px 1px 1px #c9d754;
 }
 
+.sendform {
+    clear: both;
+}
+
 .resultapp {
+    float: right;
     width: 500px;
-    background-color: #eee;
+    background-color: #b0c4de;
     font-size: 18px;
     font-smooth: never;
     -webkit-font-smoothing: none;
@@ -36,8 +46,9 @@ input:active, input:focus{
 }
 
 .botapp {
+    float: left;
     width: 500px;
-    background-color: #eee;
+    background-color: #f5deb3;
     font-size: 18px;
     font-smooth: never;
     -webkit-font-smoothing: none;
