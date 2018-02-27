@@ -1,6 +1,6 @@
 import os, sys, random, json, path
 import sqlite3
-from pykakasi import kakasi
+#from pykakasi import kakasi
 from auto_response import DefaultResponse
 
 from pypugjs.ext.tornado import patch_tornado
@@ -14,9 +14,9 @@ patch_tornado()
 db_name = 'appdatabase.db'
 conn = sqlite3.connect(db_name)
 c = conn.cursor()
-kakasi = kakasi()
-kakasi.setMode('J', 'H')
-conv = kakasi.getConverter()
+#kakasi = kakasi()
+#kakasi.setMode('J', 'H')
+#conv = kakasi.getConverter()
 
 class BaseHandler(tornado.web.RequestHandler):
     cookie_username = "username"
@@ -45,7 +45,8 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         if message["text"]:
             self.messages.append(message)
             for user in self.users:
-                kakasi_mes = conv.do(message["text"])
+                #kakasi_mes = conv.do(message["text"])
+                kakasi_mes = message["text"]
                 DR = DefaultResponse()
                 response = DR.parse_response(message["text"])
                 user.write_message({'kakasi_mes': kakasi_mes, 'response': response})
