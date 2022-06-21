@@ -7,7 +7,7 @@ gevent==1.2.2
 greenlet==0.4.12
 idna==2.6
 mecab-python3==0.7
-numpy==1.13.3
+numpy==1.22.0
 pykakasi==0.24
 pypugjs==4.2.2
 requests==2.18.4
